@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    { "id": "mobile", "label": "Mobile Client",    "type": "client",   "x": 75,  "y": 100, "w": 120, "h": 44 },
+    { "id": "web",    "label": "Web Client",       "type": "client",   "x": 75,  "y": 200, "w": 120, "h": 44 },
+    { "id": "ws",     "label": "WebSocket Server", "type": "server",   "x": 240, "y": 150, "w": 140, "h": 44 },
+    { "id": "chat",   "label": "Chat Service",     "type": "server",   "x": 420, "y": 150, "w": 120, "h": 44 },
+    { "id": "mq",     "label": "Message Queue",    "type": "queue",    "x": 580, "y": 100, "w": 130, "h": 44 },
+    { "id": "msgdb",  "label": "Message DB",       "type": "database", "x": 700, "y": 175, "w": 110, "h": 44 },
+    { "id": "presence","label": "Presence Service","type": "server",   "x": 580, "y": 210, "w": 130, "h": 44 }
+  ],
+  "edges": [
+    { "from": "mobile",   "to": "ws",       "label": "WSS" },
+    { "from": "web",      "to": "ws",       "label": "WSS" },
+    { "from": "ws",       "to": "chat",     "label": "message" },
+    { "from": "chat",     "to": "mq",       "label": "publish" },
+    { "from": "mq",       "to": "msgdb",    "label": "persist" },
+    { "from": "chat",     "to": "presence", "label": "status update" }
+  ],
+  "viewBox": "0 0 800 300"
+}

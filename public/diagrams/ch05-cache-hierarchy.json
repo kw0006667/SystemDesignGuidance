@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    { "id": "browser", "label": "Browser Cache", "type": "cache",    "x": 80,  "y": 80, "w": 120, "h": 44 },
+    { "id": "cdn",     "label": "CDN",            "type": "server",   "x": 230, "y": 80, "w": 100, "h": 44 },
+    { "id": "appcache","label": "App Cache",      "type": "cache",    "x": 370, "y": 80, "w": 110, "h": 44 },
+    { "id": "dbcache", "label": "DB Cache",       "type": "cache",    "x": 515, "y": 80, "w": 110, "h": 44 },
+    { "id": "db",      "label": "Database",       "type": "database", "x": 660, "y": 80, "w": 110, "h": 44 }
+  ],
+  "edges": [
+    { "from": "browser",  "to": "cdn",      "label": "miss" },
+    { "from": "cdn",      "to": "appcache", "label": "miss" },
+    { "from": "appcache", "to": "dbcache",  "label": "miss" },
+    { "from": "dbcache",  "to": "db",       "label": "miss" }
+  ],
+  "viewBox": "0 0 800 160"
+}

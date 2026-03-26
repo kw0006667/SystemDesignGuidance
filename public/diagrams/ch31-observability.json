@@ -1,0 +1,28 @@
+{
+  "viewBox": "0 0 720 320",
+  "nodes": [
+    {"id": "app_service", "label": "App Service", "type": "server", "x": 80, "y": 160},
+    {"id": "otel_sdk", "label": "OTel SDK", "type": "gateway", "x": 220, "y": 160},
+    {"id": "log_collector", "label": "Log Collector", "type": "server", "x": 370, "y": 70},
+    {"id": "metric_collector", "label": "Metric Collector", "type": "server", "x": 370, "y": 160},
+    {"id": "trace_collector", "label": "Trace Collector", "type": "server", "x": 370, "y": 260},
+    {"id": "log_store", "label": "Log Store", "type": "storage", "x": 510, "y": 70},
+    {"id": "metric_store", "label": "Metric Store", "type": "database", "x": 510, "y": 160},
+    {"id": "trace_store", "label": "Trace Store", "type": "database", "x": 510, "y": 260},
+    {"id": "alerting", "label": "Alerting", "type": "server", "x": 640, "y": 100},
+    {"id": "dashboard", "label": "Dashboard", "type": "client", "x": 640, "y": 220}
+  ],
+  "edges": [
+    {"from": "app_service", "to": "otel_sdk", "label": "instrument", "dashed": false},
+    {"from": "otel_sdk", "to": "log_collector", "label": "logs", "dashed": false},
+    {"from": "otel_sdk", "to": "metric_collector", "label": "metrics", "dashed": false},
+    {"from": "otel_sdk", "to": "trace_collector", "label": "traces", "dashed": false},
+    {"from": "log_collector", "to": "log_store", "label": "", "dashed": false},
+    {"from": "metric_collector", "to": "metric_store", "label": "", "dashed": false},
+    {"from": "trace_collector", "to": "trace_store", "label": "", "dashed": false},
+    {"from": "metric_store", "to": "alerting", "label": "", "dashed": false},
+    {"from": "log_store", "to": "dashboard", "label": "", "dashed": false},
+    {"from": "metric_store", "to": "dashboard", "label": "", "dashed": false},
+    {"from": "trace_store", "to": "dashboard", "label": "", "dashed": false}
+  ]
+}

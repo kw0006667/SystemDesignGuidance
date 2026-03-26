@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    { "id": "svcA", "label": "Service A",       "type": "server",  "x": 100, "y": 110, "w": 120, "h": 44 },
+    { "id": "cb",   "label": "Circuit Breaker", "type": "gateway", "x": 280, "y": 110, "w": 130, "h": 44 },
+    { "id": "svcB", "label": "Service B",       "type": "server",  "x": 470, "y": 110, "w": 120, "h": 44 },
+    { "id": "fb",   "label": "Fallback",        "type": "server",  "x": 280, "y": 185, "w": 130, "h": 44 }
+  ],
+  "edges": [
+    { "from": "svcA", "to": "cb",   "label": "call" },
+    { "from": "cb",   "to": "svcB", "label": "closed" },
+    { "from": "cb",   "to": "fb",   "label": "open / tripped", "dashed": true }
+  ],
+  "viewBox": "0 0 650 220"
+}

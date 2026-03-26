@@ -1,0 +1,138 @@
+/* ============================================================
+   Design Tokens — Light Theme (default)
+   ============================================================ */
+:root {
+  /* Layout */
+  --sidebar-width: 280px;
+  --sections-panel-width: 240px;
+  --topbar-height: 52px;
+  --content-max-width: 860px;
+
+  /* Green Accent Palette */
+  --color-accent: #40916c;
+  --color-accent-hover: #2d6a4f;
+  --color-accent-soft: rgba(64, 145, 108, 0.10);
+  --color-accent-border: rgba(64, 145, 108, 0.30);
+
+  /* Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-sidebar: #f6faf7;
+  --color-bg-elevated: #eef4ef;
+  --color-bg-hover: #e4ede6;
+
+  /* Text */
+  --color-text-primary: #1a2e1a;
+  --color-text-secondary: #4a5e4a;
+  --color-text-muted: #728272;
+  --color-text-heading: #0f1f0f;
+
+  /* Borders */
+  --color-border: #d8e8da;
+  --color-border-strong: #bdd0c0;
+
+  /* Code */
+  --color-code-bg: #f4f9f5;
+  --color-code-text: #1a2e1a;
+  --color-inline-code-bg: #e2f0e4;
+  --color-inline-code-text: #1b5e20;
+
+  /* Callouts */
+  --color-callout-info-bg: rgba(33, 150, 243, 0.07);
+  --color-callout-info-border: rgba(33, 150, 243, 0.35);
+  --color-callout-warning-bg: rgba(245, 158, 11, 0.08);
+  --color-callout-warning-border: rgba(245, 158, 11, 0.35);
+  --color-callout-tip-bg: rgba(64, 145, 108, 0.08);
+  --color-callout-tip-border: rgba(64, 145, 108, 0.35);
+  --color-callout-danger-bg: rgba(220, 38, 38, 0.07);
+  --color-callout-danger-border: rgba(220, 38, 38, 0.30);
+
+  /* Misc */
+  --color-blockquote-border: #52b788;
+  --color-blockquote-bg: rgba(82, 183, 136, 0.06);
+  --color-table-header-bg: #eef4ef;
+  --color-table-row-alt: #f6faf7;
+  --color-shadow: rgba(0, 0, 0, 0.07);
+  --color-shadow-strong: rgba(0, 0, 0, 0.14);
+  --color-overlay: rgba(0, 0, 0, 0.35);
+
+  /* Difficulty badges */
+  --color-badge-entry: #d1fae5;
+  --color-badge-entry-text: #065f46;
+  --color-badge-junior: #dbeafe;
+  --color-badge-junior-text: #1e40af;
+  --color-badge-mid: #ede9fe;
+  --color-badge-mid-text: #5b21b6;
+  --color-badge-senior: #fef3c7;
+  --color-badge-senior-text: #92400e;
+  --color-badge-staff: #fee2e2;
+  --color-badge-staff-text: #991b1b;
+
+  /* Typography */
+  --font-ui: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+
+  /* Motion */
+  --transition: 200ms ease;
+  --radius: 6px;
+  --radius-sm: 4px;
+
+  /* Safe areas (iOS) */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ============================================================
+   Dark Theme
+   ============================================================ */
+html[data-theme='dark'] {
+  --color-bg: #1a2319;
+  --color-bg-sidebar: #141c13;
+  --color-bg-elevated: #1e2a1d;
+  --color-bg-hover: #263325;
+
+  --color-text-primary: #c8d8c8;
+  --color-text-secondary: #9ab09a;
+  --color-text-muted: #6a806a;
+  --color-text-heading: #e8f0e8;
+
+  --color-accent: #74c69d;
+  --color-accent-hover: #95d5b2;
+  --color-accent-soft: rgba(116, 198, 157, 0.12);
+  --color-accent-border: rgba(116, 198, 157, 0.30);
+
+  --color-border: #283828;
+  --color-border-strong: #384e38;
+
+  --color-code-bg: #111910;
+  --color-code-text: #c8d8c8;
+  --color-inline-code-bg: #1e2e1d;
+  --color-inline-code-text: #95d5b2;
+
+  --color-callout-info-bg: rgba(33, 150, 243, 0.09);
+  --color-callout-info-border: rgba(33, 150, 243, 0.28);
+  --color-callout-warning-bg: rgba(245, 158, 11, 0.09);
+  --color-callout-warning-border: rgba(245, 158, 11, 0.28);
+  --color-callout-tip-bg: rgba(116, 198, 157, 0.09);
+  --color-callout-tip-border: rgba(116, 198, 157, 0.28);
+  --color-callout-danger-bg: rgba(220, 38, 38, 0.09);
+  --color-callout-danger-border: rgba(220, 38, 38, 0.25);
+
+  --color-blockquote-border: #74c69d;
+  --color-blockquote-bg: rgba(116, 198, 157, 0.07);
+  --color-table-header-bg: #1e2a1d;
+  --color-table-row-alt: #1a2319;
+  --color-shadow: rgba(0, 0, 0, 0.30);
+  --color-shadow-strong: rgba(0, 0, 0, 0.50);
+  --color-overlay: rgba(0, 0, 0, 0.55);
+
+  --color-badge-entry: #064e3b;
+  --color-badge-entry-text: #6ee7b7;
+  --color-badge-junior: #1e3a5f;
+  --color-badge-junior-text: #93c5fd;
+  --color-badge-mid: #3b2d6b;
+  --color-badge-mid-text: #c4b5fd;
+  --color-badge-senior: #451a03;
+  --color-badge-senior-text: #fcd34d;
+  --color-badge-staff: #450a0a;
+  --color-badge-staff-text: #fca5a5;
+}

@@ -1,0 +1,22 @@
+{
+  "nodes": [
+    { "id": "user",       "label": "User",              "type": "client", "x": 80,  "y": 170, "w": 100, "h": 44 },
+    { "id": "intent",     "label": "Intent Agent",      "type": "agent",  "x": 230, "y": 170, "w": 120, "h": 44 },
+    { "id": "faq",        "label": "FAQ Agent",         "type": "agent",  "x": 400, "y": 90,  "w": 120, "h": 44 },
+    { "id": "order",      "label": "Order Agent",       "type": "agent",  "x": 400, "y": 170, "w": 120, "h": 44 },
+    { "id": "complaint",  "label": "Complaint Agent",   "type": "agent",  "x": 400, "y": 250, "w": 130, "h": 44 },
+    { "id": "escalation", "label": "Escalation Agent",  "type": "agent",  "x": 570, "y": 170, "w": 140, "h": 44 },
+    { "id": "human",      "label": "Human Support",     "type": "server", "x": 680, "y": 280, "w": 130, "h": 44 }
+  ],
+  "edges": [
+    { "from": "user",      "to": "intent",     "label": "message" },
+    { "from": "intent",    "to": "faq",        "label": "FAQ intent" },
+    { "from": "intent",    "to": "order",      "label": "order intent" },
+    { "from": "intent",    "to": "complaint",  "label": "complaint intent" },
+    { "from": "faq",       "to": "escalation", "label": "unresolved", "dashed": true },
+    { "from": "order",     "to": "escalation", "label": "unresolved", "dashed": true },
+    { "from": "complaint", "to": "escalation", "label": "escalate", "dashed": true },
+    { "from": "escalation","to": "human",      "label": "hand off" }
+  ],
+  "viewBox": "0 0 750 340"
+}

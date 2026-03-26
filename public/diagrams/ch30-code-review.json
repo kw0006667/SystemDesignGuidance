@@ -1,0 +1,29 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    {"id": "developer", "label": "Developer", "type": "client", "x": 80, "y": 100},
+    {"id": "github_webhook", "label": "GitHub Webhook", "type": "gateway", "x": 80, "y": 220},
+    {"id": "review_orchestrator", "label": "Review Orchestrator", "type": "agent", "x": 260, "y": 160},
+    {"id": "security_agent", "label": "Security Agent", "type": "agent", "x": 430, "y": 70},
+    {"id": "style_agent", "label": "Style Agent", "type": "agent", "x": 430, "y": 170},
+    {"id": "logic_agent", "label": "Logic Agent", "type": "agent", "x": 430, "y": 270},
+    {"id": "synthesis_agent", "label": "Synthesis Agent", "type": "agent", "x": 580, "y": 160},
+    {"id": "llm", "label": "LLM", "type": "agent", "x": 640, "y": 270},
+    {"id": "pr_comment_api", "label": "PR Comment API", "type": "server", "x": 580, "y": 60},
+    {"id": "review_store", "label": "Review Store", "type": "database", "x": 260, "y": 290}
+  ],
+  "edges": [
+    {"from": "developer", "to": "github_webhook", "label": "push PR", "dashed": false},
+    {"from": "github_webhook", "to": "review_orchestrator", "label": "", "dashed": false},
+    {"from": "review_orchestrator", "to": "security_agent", "label": "", "dashed": false},
+    {"from": "review_orchestrator", "to": "style_agent", "label": "", "dashed": false},
+    {"from": "review_orchestrator", "to": "logic_agent", "label": "", "dashed": false},
+    {"from": "security_agent", "to": "synthesis_agent", "label": "", "dashed": false},
+    {"from": "style_agent", "to": "synthesis_agent", "label": "", "dashed": false},
+    {"from": "logic_agent", "to": "synthesis_agent", "label": "", "dashed": false},
+    {"from": "synthesis_agent", "to": "llm", "label": "final review", "dashed": false},
+    {"from": "llm", "to": "pr_comment_api", "label": "post comments", "dashed": false},
+    {"from": "pr_comment_api", "to": "developer", "label": "", "dashed": false},
+    {"from": "review_orchestrator", "to": "review_store", "label": "", "dashed": false}
+  ]
+}

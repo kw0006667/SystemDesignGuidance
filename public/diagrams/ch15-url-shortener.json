@@ -1,0 +1,21 @@
+{
+  "viewBox": "0 0 720 300",
+  "nodes": [
+    {"id": "client", "label": "Client", "type": "client", "x": 60, "y": 150},
+    {"id": "api_server", "label": "API Server", "type": "server", "x": 210, "y": 150},
+    {"id": "cache", "label": "Cache", "type": "cache", "x": 360, "y": 80},
+    {"id": "db", "label": "Database", "type": "database", "x": 360, "y": 200},
+    {"id": "id_generator", "label": "ID Generator", "type": "server", "x": 510, "y": 120},
+    {"id": "analytics_queue", "label": "Analytics Queue", "type": "queue", "x": 510, "y": 220},
+    {"id": "analytics_db", "label": "Analytics DB", "type": "database", "x": 650, "y": 220}
+  ],
+  "edges": [
+    {"from": "client", "to": "api_server", "label": "shorten/redirect", "dashed": false},
+    {"from": "api_server", "to": "cache", "label": "lookup", "dashed": false},
+    {"from": "cache", "to": "client", "label": "cache hit", "dashed": true},
+    {"from": "api_server", "to": "db", "label": "cache miss", "dashed": false},
+    {"from": "api_server", "to": "id_generator", "label": "create", "dashed": false},
+    {"from": "api_server", "to": "analytics_queue", "label": "async log", "dashed": false},
+    {"from": "analytics_queue", "to": "analytics_db", "label": "", "dashed": false}
+  ]
+}

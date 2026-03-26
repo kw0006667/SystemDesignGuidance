@@ -1,0 +1,26 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    {"id": "client", "label": "Client", "type": "client", "x": 80, "y": 170},
+    {"id": "scheduler_api", "label": "Scheduler API", "type": "server", "x": 240, "y": 170},
+    {"id": "leader", "label": "Leader Node", "type": "server", "x": 400, "y": 100},
+    {"id": "worker1", "label": "Worker 1", "type": "server", "x": 580, "y": 130},
+    {"id": "worker2", "label": "Worker 2", "type": "server", "x": 580, "y": 210},
+    {"id": "job_db", "label": "Job DB", "type": "database", "x": 240, "y": 280},
+    {"id": "job_queue", "label": "Job Queue", "type": "queue", "x": 400, "y": 210},
+    {"id": "zookeeper", "label": "Zookeeper", "type": "server", "x": 400, "y": 300},
+    {"id": "result_store", "label": "Result Store", "type": "storage", "x": 640, "y": 300}
+  ],
+  "edges": [
+    {"from": "client", "to": "scheduler_api", "label": "", "dashed": false},
+    {"from": "scheduler_api", "to": "job_db", "label": "", "dashed": false},
+    {"from": "scheduler_api", "to": "job_queue", "label": "", "dashed": false},
+    {"from": "leader", "to": "job_queue", "label": "dispatch", "dashed": false},
+    {"from": "job_queue", "to": "worker1", "label": "", "dashed": false},
+    {"from": "job_queue", "to": "worker2", "label": "", "dashed": false},
+    {"from": "worker1", "to": "result_store", "label": "", "dashed": false},
+    {"from": "worker2", "to": "result_store", "label": "", "dashed": false},
+    {"from": "leader", "to": "zookeeper", "label": "heartbeat", "dashed": true},
+    {"from": "scheduler_api", "to": "leader", "label": "elect", "dashed": true}
+  ]
+}

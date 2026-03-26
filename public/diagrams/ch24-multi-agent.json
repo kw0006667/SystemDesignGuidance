@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    { "id": "user",    "label": "User",              "type": "client", "x": 80,  "y": 160, "w": 100, "h": 44 },
+    { "id": "orch",    "label": "Orchestrator Agent","type": "agent",  "x": 240, "y": 160, "w": 150, "h": 44 },
+    { "id": "w1",      "label": "Worker Agent 1",    "type": "agent",  "x": 450, "y": 85,  "w": 130, "h": 44 },
+    { "id": "w2",      "label": "Worker Agent 2",    "type": "agent",  "x": 450, "y": 160, "w": 130, "h": 44 },
+    { "id": "w3",      "label": "Worker Agent 3",    "type": "agent",  "x": 450, "y": 235, "w": 130, "h": 44 },
+    { "id": "synth",   "label": "Synthesis Agent",   "type": "agent",  "x": 630, "y": 160, "w": 130, "h": 44 }
+  ],
+  "edges": [
+    { "from": "user",  "to": "orch",  "label": "task" },
+    { "from": "orch",  "to": "w1",    "label": "subtask" },
+    { "from": "orch",  "to": "w2",    "label": "subtask" },
+    { "from": "orch",  "to": "w3",    "label": "subtask" },
+    { "from": "w1",    "to": "synth", "label": "result", "dashed": true },
+    { "from": "w2",    "to": "synth", "label": "result", "dashed": true },
+    { "from": "w3",    "to": "synth", "label": "result", "dashed": true },
+    { "from": "synth", "to": "user",  "label": "final answer", "dashed": true }
+  ],
+  "viewBox": "0 0 750 320"
+}

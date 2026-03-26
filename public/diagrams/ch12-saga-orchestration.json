@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    { "id": "orch",  "label": "Orchestrator",       "type": "server", "x": 350, "y": 70,  "w": 130, "h": 44 },
+    { "id": "order", "label": "Order Service",      "type": "server", "x": 140, "y": 185, "w": 120, "h": 44 },
+    { "id": "pay",   "label": "Payment Service",    "type": "server", "x": 290, "y": 185, "w": 130, "h": 44 },
+    { "id": "inv",   "label": "Inventory Service",  "type": "server", "x": 450, "y": 185, "w": 130, "h": 44 },
+    { "id": "ship",  "label": "Shipping Service",   "type": "server", "x": 600, "y": 185, "w": 130, "h": 44 }
+  ],
+  "edges": [
+    { "from": "orch", "to": "order", "label": "1. create order" },
+    { "from": "orch", "to": "pay",   "label": "2. charge" },
+    { "from": "orch", "to": "inv",   "label": "3. reserve" },
+    { "from": "orch", "to": "ship",  "label": "4. ship" },
+    { "from": "order","to": "orch",  "label": "ok", "dashed": true },
+    { "from": "pay",  "to": "orch",  "label": "ok", "dashed": true },
+    { "from": "inv",  "to": "orch",  "label": "ok", "dashed": true },
+    { "from": "ship", "to": "orch",  "label": "ok", "dashed": true }
+  ],
+  "viewBox": "0 0 760 280"
+}

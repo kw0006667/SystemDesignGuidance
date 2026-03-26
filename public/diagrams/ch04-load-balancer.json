@@ -1,0 +1,24 @@
+{
+  "nodes": [
+    { "id": "c1",      "label": "Client 1",      "type": "client",       "x": 70,  "y": 100, "w": 100, "h": 44 },
+    { "id": "c2",      "label": "Client 2",      "type": "client",       "x": 70,  "y": 180, "w": 100, "h": 44 },
+    { "id": "glb",     "label": "Global LB",     "type": "loadbalancer", "x": 215, "y": 140, "w": 110, "h": 44 },
+    { "id": "l7lb",    "label": "L7 Load Balancer", "type": "loadbalancer", "x": 365, "y": 140, "w": 130, "h": 44 },
+    { "id": "app1",    "label": "App Server 1",  "type": "server",       "x": 545, "y": 70,  "w": 110, "h": 44 },
+    { "id": "app2",    "label": "App Server 2",  "type": "server",       "x": 545, "y": 140, "w": 110, "h": 44 },
+    { "id": "app3",    "label": "App Server 3",  "type": "server",       "x": 545, "y": 210, "w": 110, "h": 44 },
+    { "id": "db",      "label": "Database",      "type": "database",     "x": 700, "y": 140, "w": 110, "h": 44 }
+  ],
+  "edges": [
+    { "from": "c1",   "to": "glb",  "label": "" },
+    { "from": "c2",   "to": "glb",  "label": "" },
+    { "from": "glb",  "to": "l7lb", "label": "route" },
+    { "from": "l7lb", "to": "app1", "label": "" },
+    { "from": "l7lb", "to": "app2", "label": "" },
+    { "from": "l7lb", "to": "app3", "label": "" },
+    { "from": "app1", "to": "db",   "label": "" },
+    { "from": "app2", "to": "db",   "label": "" },
+    { "from": "app3", "to": "db",   "label": "" }
+  ],
+  "viewBox": "0 0 800 280"
+}

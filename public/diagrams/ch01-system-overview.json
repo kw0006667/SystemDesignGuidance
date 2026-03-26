@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    { "id": "client",   "label": "Client",         "type": "client",       "x": 60,  "y": 150, "w": 100, "h": 44 },
+    { "id": "cdn",      "label": "CDN",             "type": "server",       "x": 180, "y": 150, "w": 100, "h": 44 },
+    { "id": "lb",       "label": "Load Balancer",   "type": "loadbalancer", "x": 310, "y": 150, "w": 120, "h": 44 },
+    { "id": "app1",     "label": "App Server 1",    "type": "server",       "x": 460, "y": 90,  "w": 110, "h": 44 },
+    { "id": "app2",     "label": "App Server 2",    "type": "server",       "x": 460, "y": 150, "w": 110, "h": 44 },
+    { "id": "app3",     "label": "App Server 3",    "type": "server",       "x": 460, "y": 210, "w": 110, "h": 44 },
+    { "id": "cache",    "label": "Cache (Redis)",   "type": "cache",        "x": 610, "y": 100, "w": 110, "h": 44 },
+    { "id": "db",       "label": "Database",        "type": "database",     "x": 610, "y": 170, "w": 110, "h": 44 },
+    { "id": "mq",       "label": "Message Queue",   "type": "queue",        "x": 610, "y": 240, "w": 110, "h": 44 }
+  ],
+  "edges": [
+    { "from": "client", "to": "cdn",   "label": "request" },
+    { "from": "cdn",    "to": "lb",    "label": "cache miss" },
+    { "from": "lb",     "to": "app1",  "label": "" },
+    { "from": "lb",     "to": "app2",  "label": "" },
+    { "from": "lb",     "to": "app3",  "label": "" },
+    { "from": "app1",   "to": "cache", "label": "" },
+    { "from": "app2",   "to": "cache", "label": "" },
+    { "from": "app2",   "to": "db",    "label": "" },
+    { "from": "app3",   "to": "mq",    "label": "" }
+  ],
+  "viewBox": "0 0 800 300"
+}

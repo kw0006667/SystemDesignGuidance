@@ -1,0 +1,22 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    { "id": "client",     "label": "Client",          "type": "client",       "x": 80,  "y": 170 },
+    { "id": "api_server", "label": "API Server",       "type": "server",       "x": 220, "y": 170 },
+    { "id": "cache",      "label": "Cache (Redis)",    "type": "cache",        "x": 220, "y": 80  },
+    { "id": "primary_db", "label": "Primary DB",       "type": "database",     "x": 380, "y": 170 },
+    { "id": "replica1",   "label": "Read Replica 1",   "type": "database",     "x": 530, "y": 100 },
+    { "id": "replica2",   "label": "Read Replica 2",   "type": "database",     "x": 530, "y": 240 },
+    { "id": "shard1",     "label": "Shard 1",          "type": "database",     "x": 640, "y": 100 },
+    { "id": "shard2",     "label": "Shard 2",          "type": "database",     "x": 640, "y": 240 }
+  ],
+  "edges": [
+    { "from": "client",     "to": "api_server", "label": "request" },
+    { "from": "api_server", "to": "cache",      "label": "reads" },
+    { "from": "api_server", "to": "primary_db", "label": "writes" },
+    { "from": "primary_db", "to": "replica1",   "label": "replication", "dashed": true },
+    { "from": "primary_db", "to": "replica2",   "label": "replication", "dashed": true },
+    { "from": "api_server", "to": "shard1",     "label": "shard A-M" },
+    { "from": "api_server", "to": "shard2",     "label": "shard N-Z" }
+  ]
+}

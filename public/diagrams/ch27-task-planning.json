@@ -1,0 +1,26 @@
+{
+  "viewBox": "0 0 720 300",
+  "nodes": [
+    {"id": "user", "label": "User", "type": "client", "x": 60, "y": 150},
+    {"id": "planner_agent", "label": "Planner Agent", "type": "agent", "x": 190, "y": 150},
+    {"id": "dag_engine", "label": "DAG Engine", "type": "server", "x": 340, "y": 150},
+    {"id": "worker_a", "label": "Worker A", "type": "agent", "x": 490, "y": 80},
+    {"id": "worker_b", "label": "Worker B", "type": "agent", "x": 490, "y": 150},
+    {"id": "worker_c", "label": "Worker C", "type": "agent", "x": 490, "y": 220},
+    {"id": "checkpoint_store", "label": "Checkpoint Store", "type": "database", "x": 340, "y": 260},
+    {"id": "result_aggregator", "label": "Result Aggregator", "type": "agent", "x": 610, "y": 150},
+    {"id": "output", "label": "Output", "type": "storage", "x": 680, "y": 260}
+  ],
+  "edges": [
+    {"from": "user", "to": "planner_agent", "label": "", "dashed": false},
+    {"from": "planner_agent", "to": "dag_engine", "label": "submit DAG", "dashed": false},
+    {"from": "dag_engine", "to": "worker_a", "label": "task 1", "dashed": false},
+    {"from": "dag_engine", "to": "worker_b", "label": "task 2", "dashed": false},
+    {"from": "dag_engine", "to": "worker_c", "label": "task 3, depends on A", "dashed": false},
+    {"from": "worker_a", "to": "checkpoint_store", "label": "", "dashed": false},
+    {"from": "worker_b", "to": "checkpoint_store", "label": "", "dashed": false},
+    {"from": "worker_c", "to": "result_aggregator", "label": "", "dashed": false},
+    {"from": "worker_a", "to": "result_aggregator", "label": "", "dashed": false},
+    {"from": "result_aggregator", "to": "output", "label": "", "dashed": false}
+  ]
+}

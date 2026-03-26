@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(xargs kill:*)",
+      "Bash(/dev/null lsof:*)",
+      "Bash(/dev/null sleep:*)",
+      "Bash(wc -l /Users/timchang/Documents/WebComponent/BookOfSysmteDesign/src/content/zh-TW/*.ts)",
+      "Bash(for f:*)",
+      "Bash(do python3:*)",
+      "Bash(echo \"$f: OK\")",
+      "Bash(echo \"$f: INVALID\")",
+      "Bash(done)",
+      "Bash(npx tsc:*)"
+    ]
+  }
+}

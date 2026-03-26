@@ -1,0 +1,21 @@
+{
+  "viewBox": "0 0 720 300",
+  "nodes": [
+    { "id": "client",      "label": "Client",         "type": "client",   "x": 80,  "y": 150 },
+    { "id": "cdn_edge",    "label": "CDN Edge",        "type": "server",   "x": 220, "y": 90  },
+    { "id": "origin_server","label": "Origin Server",  "type": "server",   "x": 380, "y": 90  },
+    { "id": "lb",          "label": "Load Balancer",   "type": "loadbalancer", "x": 220, "y": 210 },
+    { "id": "api",         "label": "API Server",      "type": "server",   "x": 380, "y": 210 },
+    { "id": "s3_storage",  "label": "Object Storage",  "type": "storage",  "x": 530, "y": 150 },
+    { "id": "metadata_db", "label": "Metadata DB",     "type": "database", "x": 530, "y": 250 }
+  ],
+  "edges": [
+    { "from": "client",       "to": "cdn_edge",     "label": "read / cache hit" },
+    { "from": "cdn_edge",     "to": "origin_server","label": "cache miss",    "dashed": true },
+    { "from": "client",       "to": "lb",           "label": "upload" },
+    { "from": "lb",           "to": "api",          "label": "" },
+    { "from": "api",          "to": "s3_storage",   "label": "store object" },
+    { "from": "api",          "to": "metadata_db",  "label": "save metadata" },
+    { "from": "s3_storage",   "to": "cdn_edge",     "label": "origin pull",   "dashed": true }
+  ]
+}

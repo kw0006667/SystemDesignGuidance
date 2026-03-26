@@ -1,0 +1,20 @@
+{
+  "viewBox": "0 0 700 320",
+  "nodes": [
+    {"id": "dau",    "label": "DAU 1億用戶",   "type": "client",     "x": 90,  "y": 160},
+    {"id": "est",    "label": "容量估算引擎",    "type": "server",     "x": 260, "y": 160},
+    {"id": "qps",    "label": "QPS 計算",       "type": "server",     "x": 440, "y": 70},
+    {"id": "store",  "label": "儲存估算",        "type": "database",   "x": 440, "y": 160},
+    {"id": "bw",     "label": "頻寬估算",        "type": "server",     "x": 440, "y": 250},
+    {"id": "result", "label": "架構決策建議",    "type": "gateway",    "x": 620, "y": 160}
+  ],
+  "edges": [
+    {"from": "dau",   "to": "est"},
+    {"from": "est",   "to": "qps"},
+    {"from": "est",   "to": "store"},
+    {"from": "est",   "to": "bw"},
+    {"from": "qps",   "to": "result"},
+    {"from": "store", "to": "result"},
+    {"from": "bw",    "to": "result"}
+  ]
+}

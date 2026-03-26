@@ -1,0 +1,24 @@
+{
+  "viewBox": "0 0 720 300",
+  "nodes": [
+    {"id": "client", "label": "Client", "type": "client", "x": 80, "y": 150},
+    {"id": "search_api", "label": "Search API", "type": "server", "x": 240, "y": 100},
+    {"id": "cache", "label": "Cache", "type": "cache", "x": 400, "y": 80},
+    {"id": "trie_service", "label": "Trie Service", "type": "server", "x": 400, "y": 170},
+    {"id": "trie_db", "label": "Trie DB", "type": "database", "x": 560, "y": 130},
+    {"id": "log_collector", "label": "Log Collector", "type": "queue", "x": 240, "y": 250},
+    {"id": "frequency_pipeline", "label": "Freq Pipeline", "type": "server", "x": 400, "y": 250},
+    {"id": "freq_db", "label": "Freq DB", "type": "database", "x": 560, "y": 250}
+  ],
+  "edges": [
+    {"from": "client", "to": "search_api", "label": "prefix query", "dashed": false},
+    {"from": "search_api", "to": "cache", "label": "hot terms", "dashed": false},
+    {"from": "cache", "to": "client", "label": "cache hit", "dashed": true},
+    {"from": "search_api", "to": "trie_service", "label": "cache miss", "dashed": false},
+    {"from": "trie_service", "to": "trie_db", "label": "", "dashed": false},
+    {"from": "client", "to": "log_collector", "label": "search logs", "dashed": true},
+    {"from": "log_collector", "to": "frequency_pipeline", "label": "", "dashed": false},
+    {"from": "frequency_pipeline", "to": "freq_db", "label": "", "dashed": false},
+    {"from": "freq_db", "to": "trie_db", "label": "update trie", "dashed": true}
+  ]
+}

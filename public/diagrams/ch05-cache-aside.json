@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    { "id": "app",   "label": "App Server",    "type": "server",   "x": 300, "y": 100, "w": 120, "h": 44 },
+    { "id": "cache", "label": "Cache (Redis)", "type": "cache",    "x": 160, "y": 100, "w": 120, "h": 44 },
+    { "id": "db",    "label": "Database",      "type": "database", "x": 440, "y": 100, "w": 120, "h": 44 }
+  ],
+  "edges": [
+    { "from": "app",   "to": "cache", "label": "read/write" },
+    { "from": "cache", "to": "app",   "label": "hit", "dashed": true },
+    { "from": "app",   "to": "db",    "label": "cache miss" }
+  ],
+  "viewBox": "0 0 600 200"
+}

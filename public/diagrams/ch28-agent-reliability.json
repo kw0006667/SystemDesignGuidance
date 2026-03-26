@@ -1,0 +1,26 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    {"id": "user", "label": "User", "type": "client", "x": 60, "y": 160},
+    {"id": "orchestrator", "label": "Orchestrator", "type": "agent", "x": 200, "y": 160},
+    {"id": "token_budget", "label": "Token Budget", "type": "cache", "x": 200, "y": 80},
+    {"id": "guardrails", "label": "Guardrails", "type": "server", "x": 360, "y": 160},
+    {"id": "hallucination_detector", "label": "Hallucination Detector", "type": "agent", "x": 490, "y": 100},
+    {"id": "output_validator", "label": "Output Validator", "type": "server", "x": 490, "y": 200},
+    {"id": "retry_queue", "label": "Retry Queue", "type": "queue", "x": 360, "y": 280},
+    {"id": "audit_log", "label": "Audit Log", "type": "storage", "x": 620, "y": 280},
+    {"id": "human_review", "label": "Human Review", "type": "client", "x": 620, "y": 160}
+  ],
+  "edges": [
+    {"from": "user", "to": "orchestrator", "label": "", "dashed": false},
+    {"from": "orchestrator", "to": "token_budget", "label": "check budget", "dashed": false},
+    {"from": "orchestrator", "to": "guardrails", "label": "output check", "dashed": false},
+    {"from": "guardrails", "to": "hallucination_detector", "label": "", "dashed": false},
+    {"from": "hallucination_detector", "to": "output_validator", "label": "", "dashed": false},
+    {"from": "output_validator", "to": "user", "label": "approved", "dashed": true},
+    {"from": "output_validator", "to": "retry_queue", "label": "failed", "dashed": false},
+    {"from": "output_validator", "to": "audit_log", "label": "", "dashed": false},
+    {"from": "retry_queue", "to": "orchestrator", "label": "", "dashed": false},
+    {"from": "output_validator", "to": "human_review", "label": "uncertain", "dashed": true}
+  ]
+}

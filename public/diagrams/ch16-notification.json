@@ -1,0 +1,27 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    {"id": "service", "label": "Service", "type": "server", "x": 60, "y": 170},
+    {"id": "notification_api", "label": "Notification API", "type": "server", "x": 190, "y": 170},
+    {"id": "priority_queue", "label": "Priority Queue", "type": "queue", "x": 330, "y": 170},
+    {"id": "push_worker", "label": "Push Worker", "type": "server", "x": 460, "y": 80},
+    {"id": "email_worker", "label": "Email Worker", "type": "server", "x": 460, "y": 170},
+    {"id": "sms_worker", "label": "SMS Worker", "type": "server", "x": 460, "y": 260},
+    {"id": "push_gateway", "label": "Push Gateway", "type": "gateway", "x": 600, "y": 80},
+    {"id": "email_provider", "label": "Email Provider", "type": "server", "x": 600, "y": 170},
+    {"id": "sms_provider", "label": "SMS Provider", "type": "server", "x": 600, "y": 260},
+    {"id": "dlq", "label": "Dead Letter Queue", "type": "queue", "x": 600, "y": 310}
+  ],
+  "edges": [
+    {"from": "service", "to": "notification_api", "label": "", "dashed": false},
+    {"from": "notification_api", "to": "priority_queue", "label": "", "dashed": false},
+    {"from": "priority_queue", "to": "push_worker", "label": "", "dashed": false},
+    {"from": "priority_queue", "to": "email_worker", "label": "", "dashed": false},
+    {"from": "priority_queue", "to": "sms_worker", "label": "", "dashed": false},
+    {"from": "push_worker", "to": "push_gateway", "label": "", "dashed": false},
+    {"from": "email_worker", "to": "email_provider", "label": "", "dashed": false},
+    {"from": "sms_worker", "to": "sms_provider", "label": "", "dashed": false},
+    {"from": "push_worker", "to": "dlq", "label": "on failure", "dashed": true},
+    {"from": "email_worker", "to": "dlq", "label": "on failure", "dashed": true}
+  ]
+}

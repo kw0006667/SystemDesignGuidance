@@ -1,0 +1,26 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    {"id": "user", "label": "User", "type": "client", "x": 60, "y": 160},
+    {"id": "rag_api", "label": "RAG API", "type": "server", "x": 180, "y": 160},
+    {"id": "query_engine", "label": "Query Engine", "type": "agent", "x": 320, "y": 160},
+    {"id": "embed_model", "label": "Embed Model", "type": "agent", "x": 460, "y": 100},
+    {"id": "vector_db", "label": "Vector DB", "type": "database", "x": 600, "y": 160},
+    {"id": "llm", "label": "LLM", "type": "agent", "x": 460, "y": 220},
+    {"id": "doc_store", "label": "Doc Store", "type": "storage", "x": 600, "y": 280},
+    {"id": "index_pipeline", "label": "Index Pipeline", "type": "server", "x": 320, "y": 280},
+    {"id": "doc_source", "label": "Doc Source", "type": "storage", "x": 180, "y": 280}
+  ],
+  "edges": [
+    {"from": "user", "to": "rag_api", "label": "", "dashed": false},
+    {"from": "rag_api", "to": "query_engine", "label": "", "dashed": false},
+    {"from": "query_engine", "to": "embed_model", "label": "encode query", "dashed": false},
+    {"from": "embed_model", "to": "vector_db", "label": "similarity search", "dashed": false},
+    {"from": "vector_db", "to": "query_engine", "label": "top-k docs", "dashed": false},
+    {"from": "query_engine", "to": "llm", "label": "prompt + context", "dashed": false},
+    {"from": "llm", "to": "rag_api", "label": "response", "dashed": false},
+    {"from": "doc_source", "to": "index_pipeline", "label": "ingest", "dashed": false},
+    {"from": "index_pipeline", "to": "embed_model", "label": "encode docs", "dashed": true},
+    {"from": "index_pipeline", "to": "doc_store", "label": "", "dashed": false}
+  ]
+}

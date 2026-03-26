@@ -1,0 +1,22 @@
+{
+  "nodes": [
+    { "id": "p1",  "label": "Producer 1",  "type": "server",   "x": 80,  "y": 100, "w": 110, "h": 44 },
+    { "id": "p2",  "label": "Producer 2",  "type": "server",   "x": 80,  "y": 170, "w": 110, "h": 44 },
+    { "id": "kafka","label": "Kafka",       "type": "queue",    "x": 270, "y": 135, "w": 110, "h": 44 },
+    { "id": "c1",  "label": "Consumer 1",  "type": "server",   "x": 460, "y": 75,  "w": 110, "h": 44 },
+    { "id": "c2",  "label": "Consumer 2",  "type": "server",   "x": 460, "y": 135, "w": 110, "h": 44 },
+    { "id": "c3",  "label": "Consumer 3",  "type": "server",   "x": 460, "y": 195, "w": 110, "h": 44 },
+    { "id": "db",  "label": "Database",    "type": "database", "x": 620, "y": 135, "w": 110, "h": 44 }
+  ],
+  "edges": [
+    { "from": "p1",    "to": "kafka", "label": "publish" },
+    { "from": "p2",    "to": "kafka", "label": "publish" },
+    { "from": "kafka", "to": "c1",    "label": "consume" },
+    { "from": "kafka", "to": "c2",    "label": "consume" },
+    { "from": "kafka", "to": "c3",    "label": "consume" },
+    { "from": "c1",    "to": "db",    "label": "" },
+    { "from": "c2",    "to": "db",    "label": "" },
+    { "from": "c3",    "to": "db",    "label": "" }
+  ],
+  "viewBox": "0 0 700 260"
+}

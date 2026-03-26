@@ -1,0 +1,23 @@
+{
+  "viewBox": "0 0 720 300",
+  "nodes": [
+    {"id": "client", "label": "Client", "type": "client", "x": 80, "y": 150},
+    {"id": "coordinator", "label": "Coordinator", "type": "server", "x": 280, "y": 150},
+    {"id": "node_a", "label": "Node A", "type": "database", "x": 480, "y": 80},
+    {"id": "node_b", "label": "Node B", "type": "database", "x": 480, "y": 220},
+    {"id": "node_c", "label": "Node C", "type": "database", "x": 600, "y": 150},
+    {"id": "gossip_protocol", "label": "Gossip Protocol", "type": "server", "x": 360, "y": 270}
+  ],
+  "edges": [
+    {"from": "client", "to": "coordinator", "label": "read/write", "dashed": false},
+    {"from": "coordinator", "to": "node_a", "label": "quorum write", "dashed": false},
+    {"from": "coordinator", "to": "node_b", "label": "quorum write", "dashed": false},
+    {"from": "coordinator", "to": "node_c", "label": "quorum read", "dashed": false},
+    {"from": "node_a", "to": "gossip_protocol", "label": "", "dashed": false},
+    {"from": "node_b", "to": "gossip_protocol", "label": "", "dashed": false},
+    {"from": "node_c", "to": "gossip_protocol", "label": "", "dashed": false},
+    {"from": "gossip_protocol", "to": "node_a", "label": "sync", "dashed": true},
+    {"from": "gossip_protocol", "to": "node_b", "label": "sync", "dashed": true},
+    {"from": "gossip_protocol", "to": "node_c", "label": "sync", "dashed": true}
+  ]
+}

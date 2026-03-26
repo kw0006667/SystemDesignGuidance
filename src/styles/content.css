@@ -1,0 +1,334 @@
+/* ============================================================
+   Content Area
+   ============================================================ */
+#content-area {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+#content-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+#content-area::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+#content-body {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 48px 48px 80px;
+}
+
+/* ============================================================
+   Chapter Header
+   ============================================================ */
+.chapter-header {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.chapter-breadcrumb {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chapter-breadcrumb .sep {
+  opacity: 0.5;
+}
+
+.chapter-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 800;
+  color: var(--color-text-heading);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.chapter-difficulty {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.difficulty-entry      { background: var(--color-badge-entry);  color: var(--color-badge-entry-text); }
+.difficulty-junior-mid { background: var(--color-badge-junior); color: var(--color-badge-junior-text); }
+.difficulty-mid-senior { background: var(--color-badge-mid);    color: var(--color-badge-mid-text); }
+.difficulty-senior     { background: var(--color-badge-senior); color: var(--color-badge-senior-text); }
+.difficulty-senior-staff { background: var(--color-badge-senior); color: var(--color-badge-senior-text); }
+.difficulty-staff      { background: var(--color-badge-staff);  color: var(--color-badge-staff-text); }
+
+/* ============================================================
+   Typography
+   ============================================================ */
+#content-body section {
+  margin-bottom: 48px;
+  scroll-margin-top: 16px;
+}
+
+#content-body h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-text-heading);
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+#content-body h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin-top: 40px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+  scroll-margin-top: 16px;
+}
+
+#content-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin-top: 28px;
+  margin-bottom: 12px;
+  scroll-margin-top: 16px;
+}
+
+#content-body h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+#content-body p {
+  margin-bottom: 16px;
+  color: var(--color-text-primary);
+  font-size: 0.975rem;
+  line-height: 1.8;
+}
+
+#content-body ul,
+#content-body ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+  list-style: revert;
+}
+
+#content-body li {
+  margin-bottom: 6px;
+  font-size: 0.975rem;
+  line-height: 1.75;
+}
+
+#content-body li > p {
+  margin-bottom: 4px;
+}
+
+/* Inline code */
+#content-body code:not(pre code) {
+  background: var(--color-inline-code-bg);
+  color: var(--color-inline-code-text);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+/* ============================================================
+   Blockquote
+   ============================================================ */
+#content-body blockquote {
+  border-left: 3px solid var(--color-blockquote-border);
+  background: var(--color-blockquote-bg);
+  padding: 12px 20px;
+  margin: 20px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* ============================================================
+   Callout Boxes
+   ============================================================ */
+.callout {
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  border-left: 4px solid;
+  margin: 20px 0;
+}
+
+.callout-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.callout p:last-child { margin-bottom: 0; }
+
+.callout-info    { background: var(--color-callout-info-bg);    border-color: var(--color-callout-info-border); }
+.callout-warning { background: var(--color-callout-warning-bg); border-color: var(--color-callout-warning-border); }
+.callout-tip     { background: var(--color-callout-tip-bg);     border-color: var(--color-callout-tip-border); }
+.callout-danger  { background: var(--color-callout-danger-bg);  border-color: var(--color-callout-danger-border); }
+
+.callout-info    .callout-title { color: #2563eb; }
+.callout-warning .callout-title { color: #d97706; }
+.callout-tip     .callout-title { color: var(--color-accent); }
+.callout-danger  .callout-title { color: #dc2626; }
+
+html[data-theme='dark'] .callout-info    .callout-title { color: #60a5fa; }
+html[data-theme='dark'] .callout-warning .callout-title { color: #fbbf24; }
+html[data-theme='dark'] .callout-tip     .callout-title { color: var(--color-accent); }
+html[data-theme='dark'] .callout-danger  .callout-title { color: #f87171; }
+
+/* ============================================================
+   Tables
+   ============================================================ */
+.table-scroll {
+  overflow-x: auto;
+  margin: 20px 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+#content-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+#content-body th {
+  background: var(--color-table-header-bg);
+  color: var(--color-text-heading);
+  font-weight: 700;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-strong);
+  white-space: nowrap;
+}
+
+#content-body td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  color: var(--color-text-primary);
+}
+
+#content-body tr:last-child td {
+  border-bottom: none;
+}
+
+#content-body tr:nth-child(even) td {
+  background: var(--color-table-row-alt);
+}
+
+/* ============================================================
+   Coming Soon Placeholder
+   ============================================================ */
+.coming-soon {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.coming-soon::before {
+  content: '🚧 ';
+}
+
+/* ============================================================
+   Chapter Nav Footer
+   ============================================================ */
+.chapter-nav-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.chapter-nav-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+  color: inherit;
+}
+
+.chapter-nav-btn:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  text-decoration: none;
+}
+
+.chapter-nav-btn.next {
+  text-align: right;
+}
+
+.chapter-nav-label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chapter-nav-title {
+  font-size: 0.88rem;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1023px) {
+  #content-body {
+    padding: 32px 32px 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  #content-area {
+    height: auto;
+    overflow: visible;
+  }
+
+  #content-body {
+    padding: 20px 16px 60px;
+  }
+
+  #content-body h2 {
+    font-size: 1.2rem;
+  }
+
+  .chapter-nav-footer {
+    grid-template-columns: 1fr;
+  }
+}

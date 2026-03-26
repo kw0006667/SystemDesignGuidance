@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    { "id": "user",    "label": "User",              "type": "client",  "x": 80,  "y": 140, "w": 100, "h": 44 },
+    { "id": "post",    "label": "Post Service",      "type": "server",  "x": 220, "y": 140, "w": 120, "h": 44 },
+    { "id": "fanout",  "label": "Fan-out Service",   "type": "server",  "x": 390, "y": 140, "w": 130, "h": 44 },
+    { "id": "feed1",   "label": "Feed Cache: User A","type": "cache",   "x": 570, "y": 70,  "w": 140, "h": 44 },
+    { "id": "feed2",   "label": "Feed Cache: User B","type": "cache",   "x": 570, "y": 140, "w": 140, "h": 44 },
+    { "id": "feed3",   "label": "Feed Cache: User C","type": "cache",   "x": 570, "y": 210, "w": 140, "h": 44 }
+  ],
+  "edges": [
+    { "from": "user",   "to": "post",   "label": "write post" },
+    { "from": "post",   "to": "fanout", "label": "new post event" },
+    { "from": "fanout", "to": "feed1",  "label": "push" },
+    { "from": "fanout", "to": "feed2",  "label": "push" },
+    { "from": "fanout", "to": "feed3",  "label": "push" }
+  ],
+  "viewBox": "0 0 750 280"
+}

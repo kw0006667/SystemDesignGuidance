@@ -1,0 +1,25 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    {"id": "client_upload", "label": "Client (Upload)", "type": "client", "x": 80, "y": 80},
+    {"id": "api_server", "label": "API Server", "type": "server", "x": 240, "y": 80},
+    {"id": "raw_storage", "label": "Raw Storage", "type": "storage", "x": 400, "y": 80},
+    {"id": "transcoder", "label": "Transcoder", "type": "server", "x": 560, "y": 80},
+    {"id": "hls_storage", "label": "HLS Storage", "type": "storage", "x": 560, "y": 200},
+    {"id": "cdn", "label": "CDN", "type": "cache", "x": 400, "y": 200},
+    {"id": "client_view", "label": "Client (View)", "type": "client", "x": 240, "y": 200},
+    {"id": "metadata_db", "label": "Metadata DB", "type": "database", "x": 240, "y": 300},
+    {"id": "progress_db", "label": "Progress DB", "type": "database", "x": 400, "y": 300}
+  ],
+  "edges": [
+    {"from": "client_upload", "to": "api_server", "label": "upload", "dashed": false},
+    {"from": "api_server", "to": "raw_storage", "label": "", "dashed": false},
+    {"from": "raw_storage", "to": "transcoder", "label": "trigger", "dashed": false},
+    {"from": "transcoder", "to": "hls_storage", "label": "720p/1080p/4K", "dashed": false},
+    {"from": "hls_storage", "to": "cdn", "label": "", "dashed": false},
+    {"from": "client_view", "to": "cdn", "label": "HLS stream", "dashed": false},
+    {"from": "api_server", "to": "metadata_db", "label": "", "dashed": false},
+    {"from": "client_view", "to": "api_server", "label": "progress sync", "dashed": true},
+    {"from": "api_server", "to": "progress_db", "label": "", "dashed": false}
+  ]
+}

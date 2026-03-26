@@ -1,0 +1,23 @@
+{
+  "viewBox": "0 0 720 300",
+  "nodes": [
+    {"id": "users", "label": "Users", "type": "client", "x": 80, "y": 150},
+    {"id": "lb", "label": "Load Balancer", "type": "loadbalancer", "x": 240, "y": 150},
+    {"id": "blue_env", "label": "Blue Env", "type": "server", "x": 430, "y": 80},
+    {"id": "green_env", "label": "Green Env", "type": "server", "x": 430, "y": 220},
+    {"id": "canary_5pct", "label": "Canary (5%)", "type": "server", "x": 430, "y": 150},
+    {"id": "feature_flag", "label": "Feature Flag", "type": "cache", "x": 240, "y": 270},
+    {"id": "monitoring", "label": "Monitoring", "type": "server", "x": 580, "y": 80},
+    {"id": "rollback_trigger", "label": "Rollback Trigger", "type": "server", "x": 580, "y": 220}
+  ],
+  "edges": [
+    {"from": "users", "to": "lb", "label": "", "dashed": false},
+    {"from": "lb", "to": "blue_env", "label": "95% traffic", "dashed": false},
+    {"from": "lb", "to": "canary_5pct", "label": "5% canary", "dashed": false},
+    {"from": "lb", "to": "green_env", "label": "blue-green switch", "dashed": true},
+    {"from": "feature_flag", "to": "lb", "label": "traffic split", "dashed": false},
+    {"from": "monitoring", "to": "lb", "label": "check metrics", "dashed": false},
+    {"from": "monitoring", "to": "rollback_trigger", "label": "alert", "dashed": true},
+    {"from": "rollback_trigger", "to": "lb", "label": "rollback", "dashed": false}
+  ]
+}

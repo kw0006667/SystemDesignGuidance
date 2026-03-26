@@ -1,0 +1,23 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    {"id": "client", "label": "Client", "type": "client", "x": 60, "y": 170},
+    {"id": "api_gateway", "label": "API Gateway", "type": "gateway", "x": 200, "y": 170},
+    {"id": "auth_server", "label": "Auth Server", "type": "server", "x": 350, "y": 80},
+    {"id": "jwt_validator", "label": "JWT Validator", "type": "server", "x": 350, "y": 200},
+    {"id": "resource_server", "label": "Resource Server", "type": "server", "x": 500, "y": 170},
+    {"id": "user_db", "label": "User DB", "type": "database", "x": 500, "y": 80},
+    {"id": "session_store", "label": "Session Store", "type": "cache", "x": 500, "y": 270},
+    {"id": "audit_log", "label": "Audit Log", "type": "storage", "x": 640, "y": 230}
+  ],
+  "edges": [
+    {"from": "client", "to": "api_gateway", "label": "request", "dashed": false},
+    {"from": "api_gateway", "to": "jwt_validator", "label": "verify token", "dashed": false},
+    {"from": "jwt_validator", "to": "session_store", "label": "", "dashed": false},
+    {"from": "api_gateway", "to": "auth_server", "label": "login", "dashed": false},
+    {"from": "auth_server", "to": "user_db", "label": "", "dashed": false},
+    {"from": "auth_server", "to": "client", "label": "JWT token", "dashed": true},
+    {"from": "api_gateway", "to": "resource_server", "label": "authorized", "dashed": false},
+    {"from": "resource_server", "to": "audit_log", "label": "", "dashed": true}
+  ]
+}

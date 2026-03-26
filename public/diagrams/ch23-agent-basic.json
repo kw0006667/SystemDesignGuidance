@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    { "id": "user",    "label": "User",          "type": "client",   "x": 80,  "y": 140, "w": 100, "h": 44 },
+    { "id": "agent",   "label": "Agent",         "type": "agent",    "x": 240, "y": 140, "w": 110, "h": 44 },
+    { "id": "llm",     "label": "LLM",           "type": "server",   "x": 400, "y": 80,  "w": 110, "h": 44 },
+    { "id": "dbtool",  "label": "Database Tool", "type": "database", "x": 400, "y": 150, "w": 120, "h": 44 },
+    { "id": "apitool", "label": "API Tool",      "type": "gateway",  "x": 560, "y": 100, "w": 110, "h": 44 },
+    { "id": "search",  "label": "Search Tool",   "type": "server",   "x": 560, "y": 195, "w": 110, "h": 44 }
+  ],
+  "edges": [
+    { "from": "user",   "to": "agent",   "label": "prompt" },
+    { "from": "agent",  "to": "llm",     "label": "reason" },
+    { "from": "llm",    "to": "agent",   "label": "plan", "dashed": true },
+    { "from": "agent",  "to": "dbtool",  "label": "query" },
+    { "from": "dbtool", "to": "apitool", "label": "" },
+    { "from": "dbtool", "to": "search",  "label": "" },
+    { "from": "agent",  "to": "user",    "label": "response", "dashed": true }
+  ],
+  "viewBox": "0 0 700 280"
+}

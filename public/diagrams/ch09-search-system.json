@@ -1,0 +1,23 @@
+{
+  "viewBox": "0 0 720 300",
+  "nodes": [
+    { "id": "client",         "label": "Client",           "type": "client",   "x": 80,  "y": 150 },
+    { "id": "search_api",     "label": "Search API",       "type": "server",   "x": 210, "y": 150 },
+    { "id": "cache",          "label": "Cache (Redis)",    "type": "cache",    "x": 210, "y": 70  },
+    { "id": "es_coordinator", "label": "ES Coordinator",   "type": "server",   "x": 360, "y": 150 },
+    { "id": "es_data1",       "label": "ES Data Node 1",   "type": "database", "x": 510, "y": 100 },
+    { "id": "es_data2",       "label": "ES Data Node 2",   "type": "database", "x": 510, "y": 220 },
+    { "id": "index_pipeline", "label": "Index Pipeline",   "type": "queue",    "x": 360, "y": 260 },
+    { "id": "raw_data",       "label": "Raw Data Source",  "type": "storage",  "x": 210, "y": 260 }
+  ],
+  "edges": [
+    { "from": "client",         "to": "search_api",     "label": "query" },
+    { "from": "search_api",     "to": "cache",          "label": "cache check" },
+    { "from": "search_api",     "to": "es_coordinator", "label": "search request" },
+    { "from": "es_coordinator", "to": "es_data1",       "label": "scatter" },
+    { "from": "es_coordinator", "to": "es_data2",       "label": "scatter" },
+    { "from": "raw_data",       "to": "index_pipeline", "label": "ingest" },
+    { "from": "index_pipeline", "to": "es_data1",       "label": "index" },
+    { "from": "index_pipeline", "to": "es_data2",       "label": "index" }
+  ]
+}

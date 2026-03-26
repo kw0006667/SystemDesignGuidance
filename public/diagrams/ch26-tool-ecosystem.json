@@ -1,0 +1,24 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    {"id": "user", "label": "User", "type": "client", "x": 60, "y": 160},
+    {"id": "orchestrator", "label": "Orchestrator", "type": "agent", "x": 200, "y": 160},
+    {"id": "tool_registry", "label": "Tool Registry", "type": "server", "x": 360, "y": 80},
+    {"id": "web_search", "label": "Web Search", "type": "server", "x": 500, "y": 80},
+    {"id": "code_runner", "label": "Code Runner", "type": "server", "x": 500, "y": 160},
+    {"id": "db_query", "label": "DB Query", "type": "database", "x": 500, "y": 240},
+    {"id": "file_system", "label": "File System", "type": "storage", "x": 360, "y": 280},
+    {"id": "mcp_server", "label": "MCP Server", "type": "gateway", "x": 620, "y": 160},
+    {"id": "human_approval", "label": "Human Approval", "type": "client", "x": 360, "y": 180}
+  ],
+  "edges": [
+    {"from": "user", "to": "orchestrator", "label": "", "dashed": false},
+    {"from": "orchestrator", "to": "tool_registry", "label": "discover tools", "dashed": false},
+    {"from": "orchestrator", "to": "web_search", "label": "", "dashed": false},
+    {"from": "orchestrator", "to": "code_runner", "label": "", "dashed": false},
+    {"from": "orchestrator", "to": "db_query", "label": "", "dashed": false},
+    {"from": "orchestrator", "to": "file_system", "label": "", "dashed": false},
+    {"from": "orchestrator", "to": "mcp_server", "label": "external tools", "dashed": false},
+    {"from": "orchestrator", "to": "human_approval", "label": "checkpoint", "dashed": true}
+  ]
+}

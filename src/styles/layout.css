@@ -1,0 +1,190 @@
+/* ============================================================
+   Top Bar (Mobile)
+   ============================================================ */
+#top-bar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-height);
+  background: var(--color-bg-sidebar);
+  border-bottom: 1px solid var(--color-border);
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  z-index: 100;
+  padding-top: var(--safe-top);
+}
+
+.top-bar-title {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================
+   Overlay
+   ============================================================ */
+#overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay);
+  z-index: 150;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+#overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ============================================================
+   Main App Grid (Desktop)
+   ============================================================ */
+#app {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr) 0;
+  height: 100vh;
+  transition: grid-template-columns var(--transition);
+}
+
+body.sidebar-collapsed #app {
+  grid-template-columns: 0 minmax(0, 1fr) var(--sections-panel-width);
+}
+
+body.sidebar-collapsed.desktop-sections-collapsed #app {
+  grid-template-columns: 0 minmax(0, 1fr) 0;
+}
+
+body.sidebar-collapsed #sidebar {
+  overflow: hidden;
+  width: 0;
+}
+
+/* ============================================================
+   Sidebar Expand Button (Desktop, when collapsed)
+   ============================================================ */
+#sidebar-expand-btn {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 90;
+  background: var(--color-bg-sidebar);
+  border: 1px solid var(--color-border);
+  border-left: none;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 10px 6px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+body.sidebar-collapsed #sidebar-expand-btn {
+  display: flex;
+}
+
+#sidebar-expand-btn:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-accent);
+}
+
+/* Mobile sections float button */
+#mobile-sections-btn {
+  display: none;
+  position: fixed;
+  bottom: calc(20px + var(--safe-bottom));
+  right: 16px;
+  z-index: 99;
+  background: var(--color-accent);
+  color: white;
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 0 14px 0 12px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px var(--color-shadow-strong);
+  transition: background var(--transition);
+}
+
+#mobile-sections-btn.is-visible {
+  display: inline-flex;
+}
+
+#mobile-sections-btn .mobile-sections-btn-icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+#mobile-sections-btn .mobile-sections-btn-label {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+#mobile-sections-btn:hover {
+  background: var(--color-accent-hover);
+}
+
+/* ============================================================
+   Loading Spinner
+   ============================================================ */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: var(--color-text-muted);
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.spinner-ring {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   Responsive — Mobile (body/app-level only)
+   ============================================================ */
+@media (max-width: 767px) {
+  body {
+    overflow: auto;
+  }
+
+  #top-bar {
+    display: flex;
+  }
+
+  #app {
+    display: block;
+    padding-top: var(--topbar-height);
+    height: auto;
+    min-height: 100vh;
+  }
+
+  #mobile-sections-btn.is-visible {
+    display: inline-flex;
+  }
+}

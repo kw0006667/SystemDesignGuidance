@@ -1,0 +1,22 @@
+{
+  "viewBox": "0 0 720 300",
+  "nodes": [
+    {"id": "client", "label": "Client", "type": "client", "x": 60, "y": 150},
+    {"id": "api_gateway", "label": "API Gateway", "type": "gateway", "x": 180, "y": 150},
+    {"id": "rate_limiter", "label": "Rate Limiter", "type": "server", "x": 310, "y": 90},
+    {"id": "token_bucket", "label": "Token Bucket", "type": "cache", "x": 440, "y": 90},
+    {"id": "api_v2", "label": "API v2", "type": "server", "x": 440, "y": 180},
+    {"id": "pagination_engine", "label": "Pagination Engine", "type": "server", "x": 570, "y": 230},
+    {"id": "db", "label": "Database", "type": "database", "x": 660, "y": 180},
+    {"id": "cache_layer", "label": "Cache Layer", "type": "cache", "x": 570, "y": 120}
+  ],
+  "edges": [
+    {"from": "client", "to": "api_gateway", "label": "", "dashed": false},
+    {"from": "api_gateway", "to": "rate_limiter", "label": "", "dashed": false},
+    {"from": "rate_limiter", "to": "token_bucket", "label": "check", "dashed": false},
+    {"from": "rate_limiter", "to": "api_v2", "label": "pass", "dashed": false},
+    {"from": "api_v2", "to": "cache_layer", "label": "", "dashed": false},
+    {"from": "api_v2", "to": "pagination_engine", "label": "", "dashed": false},
+    {"from": "pagination_engine", "to": "db", "label": "", "dashed": false}
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "viewBox": "0 0 720 340",
+  "nodes": [
+    { "id": "client",      "label": "Client",           "type": "client",       "x": 80,  "y": 170 },
+    { "id": "lb",          "label": "Load Balancer",    "type": "loadbalancer", "x": 180, "y": 170 },
+    { "id": "monolith",    "label": "Monolith App",     "type": "server",       "x": 270, "y": 170 },
+    { "id": "db",          "label": "Database",         "type": "database",     "x": 270, "y": 270 },
+    { "id": "api_gateway", "label": "API Gateway",      "type": "gateway",      "x": 430, "y": 170 },
+    { "id": "user_svc",    "label": "User Service",     "type": "server",       "x": 540, "y": 90  },
+    { "id": "order_svc",   "label": "Order Service",    "type": "server",       "x": 540, "y": 170 },
+    { "id": "payment_svc", "label": "Payment Service",  "type": "server",       "x": 540, "y": 260 },
+    { "id": "user_db",     "label": "User DB",          "type": "database",     "x": 650, "y": 90  },
+    { "id": "order_db",    "label": "Order DB",         "type": "database",     "x": 650, "y": 170 },
+    { "id": "payment_db",  "label": "Payment DB",       "type": "database",     "x": 650, "y": 260 }
+  ],
+  "edges": [
+    { "from": "client",      "to": "lb",          "label": "" },
+    { "from": "lb",          "to": "monolith",    "label": "" },
+    { "from": "monolith",    "to": "db",          "label": "" },
+    { "from": "client",      "to": "api_gateway", "label": "" },
+    { "from": "api_gateway", "to": "user_svc",    "label": "" },
+    { "from": "api_gateway", "to": "order_svc",   "label": "" },
+    { "from": "api_gateway", "to": "payment_svc", "label": "" },
+    { "from": "user_svc",    "to": "user_db",     "label": "" },
+    { "from": "order_svc",   "to": "order_db",    "label": "" },
+    { "from": "payment_svc", "to": "payment_db",  "label": "" }
+  ]
+}

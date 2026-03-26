@@ -1,0 +1,132 @@
+/* ============================================================
+   Code Blocks
+   ============================================================ */
+#content-body pre {
+  position: relative;
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  overflow-x: auto;
+  margin: 20px 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+#content-body pre::-webkit-scrollbar {
+  height: 4px;
+}
+
+#content-body pre::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+}
+
+#content-body pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: var(--color-code-text);
+  font-family: inherit;
+}
+
+/* Data lang label */
+#content-body pre[data-lang]::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 8px;
+  right: 44px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+  font-family: var(--font-ui);
+}
+
+/* ============================================================
+   Copy Button
+   ============================================================ */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition), background var(--transition), color var(--transition);
+  font-family: var(--font-ui);
+}
+
+#content-body pre:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+.copy-btn.copied {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: white;
+  opacity: 1;
+}
+
+/* ============================================================
+   Prism Overrides — harmonize with green theme
+   ============================================================ */
+
+/* Light theme — override prism default purple with green accent for keywords */
+html:not([data-theme='dark']) .token.keyword,
+html:not([data-theme='dark']) .token.rule {
+  color: #2d6a4f;
+}
+
+html:not([data-theme='dark']) .token.string,
+html:not([data-theme='dark']) .token.attr-value {
+  color: #1b5e20;
+}
+
+html:not([data-theme='dark']) .token.function {
+  color: #40916c;
+}
+
+html:not([data-theme='dark']) .token.comment {
+  color: #728272;
+  font-style: italic;
+}
+
+html:not([data-theme='dark']) .token.number {
+  color: #0d47a1;
+}
+
+/* Dark theme — Prism Tomorrow theme loaded via CDN, just tweak */
+html[data-theme='dark'] .token.keyword {
+  color: #74c69d;
+}
+
+html[data-theme='dark'] .token.string {
+  color: #95d5b2;
+}
+
+html[data-theme='dark'] .token.function {
+  color: #b7e4c7;
+}
+
+html[data-theme='dark'] .token.comment {
+  color: #6a806a;
+  font-style: italic;
+}

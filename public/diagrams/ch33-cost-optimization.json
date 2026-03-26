@@ -1,0 +1,26 @@
+{
+  "viewBox": "0 0 720 320",
+  "nodes": [
+    {"id": "app", "label": "App", "type": "server", "x": 100, "y": 160},
+    {"id": "auto_scaler", "label": "Auto Scaler", "type": "server", "x": 240, "y": 100},
+    {"id": "spot_instances", "label": "Spot Instances", "type": "server", "x": 400, "y": 60},
+    {"id": "reserved_instances", "label": "Reserved Instances", "type": "server", "x": 400, "y": 150},
+    {"id": "s3_hot", "label": "S3 Hot", "type": "storage", "x": 240, "y": 220},
+    {"id": "s3_warm", "label": "S3 Warm", "type": "storage", "x": 400, "y": 240},
+    {"id": "s3_glacier", "label": "S3 Glacier", "type": "storage", "x": 560, "y": 260},
+    {"id": "cdn", "label": "CDN", "type": "cache", "x": 240, "y": 300},
+    {"id": "cost_monitor", "label": "Cost Monitor", "type": "server", "x": 560, "y": 140},
+    {"id": "lifecycle_policy", "label": "Lifecycle Policy", "type": "server", "x": 560, "y": 60}
+  ],
+  "edges": [
+    {"from": "app", "to": "auto_scaler", "label": "", "dashed": false},
+    {"from": "auto_scaler", "to": "spot_instances", "label": "burst, low cost", "dashed": false},
+    {"from": "auto_scaler", "to": "reserved_instances", "label": "baseline", "dashed": false},
+    {"from": "app", "to": "s3_hot", "label": "active data", "dashed": false},
+    {"from": "s3_hot", "to": "s3_warm", "label": "30d lifecycle", "dashed": true},
+    {"from": "s3_warm", "to": "s3_glacier", "label": "90d lifecycle", "dashed": true},
+    {"from": "app", "to": "cdn", "label": "cache static", "dashed": false},
+    {"from": "cost_monitor", "to": "app", "label": "alert", "dashed": false},
+    {"from": "lifecycle_policy", "to": "s3_hot", "label": "", "dashed": false}
+  ]
+}
