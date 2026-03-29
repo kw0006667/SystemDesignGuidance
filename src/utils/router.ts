@@ -8,6 +8,16 @@ let _scrollSyncEnabled = true;
 let _scrollSyncTimer: ReturnType<typeof setTimeout> | null = null;
 let _removeScrollSync: (() => void) | null = null;
 
+function _isMobileLayout(): boolean {
+  return window.matchMedia('(max-width: 767px)').matches;
+}
+
+function _getMobileScrollOffset(): number {
+  const rootStyle = getComputedStyle(document.documentElement);
+  const topbarHeight = Number.parseFloat(rootStyle.getPropertyValue('--topbar-height')) || 52;
+  return topbarHeight + 24;
+}
+
 export function initRouter(): void {
   window.addEventListener('hashchange', _onHashChange);
   _onHashChange();
@@ -73,17 +83,21 @@ export function setupScrollSync(chapter: Chapter): void {
   const sectionElements = Array.from(
     document.querySelectorAll<HTMLElement>('#chapter-main-content section[id]')
   );
+  _removeScrollSync?.();
   if (!contentArea || sectionElements.length === 0) return;
 
-  _removeScrollSync?.();
+  let rafId: number | null = null;
 
-  const onScroll = (): void => {
+  const syncActiveSection = (): void => {
     if (!_scrollSyncEnabled) return;
 
-    const scrollMarker = contentArea.scrollTop + 120;
+    const isMobile = _isMobileLayout();
+    const containerTop = isMobile ? 0 : contentArea.getBoundingClientRect().top;
+    const activationOffset = isMobile ? _getMobileScrollOffset() : 120;
     let currentSlug = sectionElements[0]?.id ?? null;
     for (const el of sectionElements) {
-      if (el.offsetTop <= scrollMarker) {
+      const relativeTop = el.getBoundingClientRect().top - containerTop;
+      if (relativeTop <= activationOffset) {
         currentSlug = el.id;
       } else {
         break;
@@ -97,12 +111,28 @@ export function setupScrollSync(chapter: Chapter): void {
     }
   };
 
+  const onScroll = (): void => {
+    if (rafId !== null) return;
+    rafId = window.requestAnimationFrame(() => {
+      rafId = null;
+      syncActiveSection();
+    });
+  };
+
   contentArea.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
   _removeScrollSync = () => {
     contentArea.removeEventListener('scroll', onScroll);
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', onScroll);
+    if (rafId !== null) {
+      window.cancelAnimationFrame(rafId);
+      rafId = null;
+    }
     _removeScrollSync = null;
   };
-  onScroll();
+  syncActiveSection();
 }
 
 export function suppressScrollSync(duration = 700): void {
@@ -111,4 +141,28 @@ export function suppressScrollSync(duration = 700): void {
   _scrollSyncTimer = setTimeout(() => {
     _scrollSyncEnabled = true;
   }, duration);
+}
+
+export function scrollToContentPosition(top: number, behavior: ScrollBehavior = 'smooth'): void {
+  const contentArea = document.getElementById('content-area');
+  if (_isMobileLayout()) {
+    window.scrollTo({ top, behavior });
+    return;
+  }
+  contentArea?.scrollTo({ top, behavior });
+}
+
+export function scrollToSection(sectionSlug: string, behavior: ScrollBehavior = 'smooth'): void {
+  const el = document.getElementById(sectionSlug);
+  if (!el) return;
+
+  if (_isMobileLayout()) {
+    const top = el.getBoundingClientRect().top + window.scrollY - _getMobileScrollOffset();
+    window.scrollTo({ top: Math.max(0, top), behavior });
+    return;
+  }
+
+  const contentArea = document.getElementById('content-area');
+  if (!contentArea) return;
+  contentArea.scrollTo({ top: Math.max(0, el.offsetTop - 24), behavior });
 }

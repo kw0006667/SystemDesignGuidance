@@ -95,6 +95,14 @@ sidebar-nav {
   overflow: hidden;
 }
 
+drawer-nav,
+sections-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
 .sidebar-nav {
   flex: 1;
   overflow-y: auto;
@@ -322,6 +330,7 @@ sidebar-nav {
   display: flex;
   flex-direction: column;
   padding-top: var(--safe-top);
+  overflow: hidden;
 }
 
 #mobile-drawer.is-open {
@@ -362,7 +371,9 @@ sidebar-nav {
 
 .drawer-nav {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 8px 0;
 }
 
@@ -430,7 +441,9 @@ body.sidebar-collapsed.desktop-sections-collapsed #sections-panel {
 
 .sections-panel-inner {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 28px 22px 32px;
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
@@ -531,7 +544,7 @@ html[data-theme='dark'] .sections-list::before {
   transition: transform var(--transition);
   display: none;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 #mobile-sections-panel.is-open {
