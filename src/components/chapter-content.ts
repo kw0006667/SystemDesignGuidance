@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import { StoreController, appState } from '../utils/store.js';
 import { getChapterById, getPartForChapter, getPrevNext } from '../content/index.js';
-import { setupScrollSync } from '../utils/router.js';
+import { scrollToContentPosition, scrollToSection, setupScrollSync } from '../utils/router.js';
 import type { ChapterContent as ChapterContentData, Section } from '../types.js';
 
 // Lazy-load map — each chapter is its own Vite chunk
@@ -146,16 +146,9 @@ class ChapterContent extends LitElement {
       // Scroll to section if needed, then setup scroll sync
       const { sectionSlug } = this._store.state;
       if (sectionSlug) {
-        setTimeout(() => {
-          const el = document.getElementById(sectionSlug);
-          if (el) {
-            const area = this.querySelector<HTMLElement>('#content-area');
-            if (area) area.scrollTo({ top: el.offsetTop - 24, behavior: 'smooth' });
-          }
-        }, 100);
+        setTimeout(() => scrollToSection(sectionSlug), 100);
       } else {
-        const area = this.querySelector<HTMLElement>('#content-area');
-        if (area) area.scrollTo({ top: 0 });
+        scrollToContentPosition(0, 'auto');
       }
 
       // Setup scroll sync

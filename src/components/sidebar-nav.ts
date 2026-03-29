@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { StoreController } from '../utils/store.js';
-import { navigateTo, suppressScrollSync } from '../utils/router.js';
+import { navigateTo, scrollToSection, suppressScrollSync } from '../utils/router.js';
 import { parts, chapters } from '../content/index.js';
 import type { Chapter, Part } from '../types.js';
 
@@ -123,18 +123,7 @@ class SidebarNav extends LitElement {
     e.preventDefault();
     suppressScrollSync();
     navigateTo(chapter.id, sectionSlug, true);
-
-    setTimeout(() => {
-      const el = document.getElementById(sectionSlug);
-      if (el) {
-        const contentArea = document.getElementById('content-area');
-        if (contentArea) {
-          contentArea.scrollTo({ top: el.offsetTop - 24, behavior: 'smooth' });
-        } else {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    }, 50);
+    setTimeout(() => scrollToSection(sectionSlug), 50);
   }
 }
 
